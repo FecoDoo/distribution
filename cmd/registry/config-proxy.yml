@@ -1,0 +1,54 @@
+version: 0.1
+
+log:
+  accesslog:
+    disabled: false
+  level: debug
+  formatter: json
+
+storage:
+  delete:
+    enabled: true
+  cache:
+    blobdescriptor: inmemory
+  inmemory:
+  maintenance:
+    uploadpurging:
+      enabled: false
+http:
+  addr: :5000
+  net: tcp
+  prefix: /
+  secret: ""
+  relativeurls: false
+  draintimeout: 60s
+  http2:
+    disabled: false
+
+proxy:
+  enablenamespaces: true
+  credentials:
+    "https://gcr.io/": # gcr.io/google-containers/busybox:latest
+      username:
+      password:
+    "https://quay.io/": # quay.io/prometheus/node-exporter
+      username:
+      password:
+    "https://registry.k8s.io/": # registry.k8s.io/pause:latest
+      username:
+      password:
+    "https://registry-1.docker.io/": # registry-1.docker.io/library/redis
+      username:
+      password:
+    "https://ghcr.io/": # ghcr.io/anais-codefresh/react-article-display:2.0.0
+      username:
+      password:
+    "https://us.gcr.io/": # us.gcr.io/google-containers/busybox:latest
+      username:
+      password:
+
+health:
+  storagedriver:
+    enabled: true
+    interval: 30s
+    threshold: 3
